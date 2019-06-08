@@ -103,7 +103,7 @@ public class ProviderServiceImpl extends AbstractService implements ProviderServ
     public Set<String> findServices() {
         Set<String> ret = new HashSet<>();
         ConcurrentMap<String, Map<String, URL>> providerUrls = getRegistryCache().get(Constants.PROVIDERS_CATEGORY);
-        if (providerUrls != null){
+        if (providerUrls != null) {
             ret.addAll(providerUrls.keySet());
         }
         return ret;
@@ -186,7 +186,7 @@ public class ProviderServiceImpl extends AbstractService implements ProviderServ
         for (Map.Entry<String, URL> e2 : value.entrySet()) {
             URL u = e2.getValue();
             String app = u.getParameter(Constants.APPLICATION);
-            if (app != null){
+            if (app != null) {
                 ret.add(app);
             }
         }
@@ -263,7 +263,7 @@ public class ProviderServiceImpl extends AbstractService implements ProviderServ
     public Set<String> findApplications() {
         Set<String> ret = new HashSet<>();
         ConcurrentMap<String, Map<String, URL>> providerUrls = getRegistryCache().get(Constants.PROVIDERS_CATEGORY);
-        if (providerUrls == null){
+        if (providerUrls == null) {
             return ret;
         }
 
@@ -317,7 +317,6 @@ public class ProviderServiceImpl extends AbstractService implements ProviderServ
     }
 
 
-
     private Map<String, URL> findProviderUrlByApplication(String application) {
         Map<String, String> filter = new HashMap<>();
         filter.put(Constants.CATEGORY_KEY, Constants.PROVIDERS_CATEGORY);
@@ -353,7 +352,7 @@ public class ProviderServiceImpl extends AbstractService implements ProviderServ
         List<String> ret = new ArrayList<String>();
 
         ConcurrentMap<String, Map<String, URL>> providerUrls = getRegistryCache().get(Constants.PROVIDERS_CATEGORY);
-        if (providerUrls == null || service == null || service.length() == 0){
+        if (providerUrls == null || service == null || service.length() == 0) {
             return ret;
         }
 
@@ -425,7 +424,7 @@ public class ProviderServiceImpl extends AbstractService implements ProviderServ
             filter = filter.toLowerCase().replace(Constants.PUNCTUATION_POINT, Constants.PUNCTUATION_SEPARATOR_POINT);
             // filter start with [* 、? 、+] will triggering PatternSyntaxException
             if (filter.startsWith(Constants.ANY_VALUE)
-                || filter.startsWith(Constants.INTERROGATION_POINT) || filter.startsWith(Constants.PLUS_SIGNS)) {
+                    || filter.startsWith(Constants.INTERROGATION_POINT) || filter.startsWith(Constants.PLUS_SIGNS)) {
                 filter = Constants.PUNCTUATION_POINT + filter;
             }
             // search with no case insensitive

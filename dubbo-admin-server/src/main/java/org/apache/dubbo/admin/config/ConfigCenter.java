@@ -41,7 +41,6 @@ import java.util.Arrays;
 public class ConfigCenter {
 
 
-
     //centers in dubbo 2.7
     @Value("${admin.config-center:}")
     private String configCenter;
@@ -67,7 +66,6 @@ public class ConfigCenter {
     private URL metadataUrl;
 
 
-
     /*
      * generate dynamic configuration client
      */
@@ -83,8 +81,8 @@ public class ConfigCenter {
             String config = dynamicConfiguration.getConfig(Constants.GLOBAL_CONFIG_PATH);
 
             if (StringUtils.isNotEmpty(config)) {
-                Arrays.stream(config.split("\n")).forEach( s -> {
-                    if(s.startsWith(Constants.REGISTRY_ADDRESS)) {
+                Arrays.stream(config.split("\n")).forEach(s -> {
+                    if (s.startsWith(Constants.REGISTRY_ADDRESS)) {
                         String registryAddress = s.split("=")[1].trim();
                         registryUrl = formUrl(registryAddress, group, username, password);
                     } else if (s.startsWith(Constants.METADATA_ADDRESS)) {
